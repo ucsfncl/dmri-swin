@@ -27,8 +27,8 @@ where:
 - `--dwi` path to a diffusion MRI nifti file.
 - `--bvals` path to a plain file which contains b-values.
 - `--mask` path to a mask nifti file. Must be in the same space as the dwi.
-- `--t1` path to a T1 MRI nifti file. Must be aligned to the dwi file.
-- `--output` (optional) default is swin_denoised.nii.gz. This is the path to where you want to save the Swin denoising dwi data.
+- `--t1` path to a T1 MRI nifti file. Must be aligned to the dwi.
+- `--output` (optional) default is swin_denoised.nii.gz. This is the path to where you want to save the Swin denoised dwi.
 - `--config` (optional) default is dmri-swin/models/swin_denoise.yaml. This is the path to where the model config file is. You shouldn't need to change this.
 - `--resample` (optional) default is True. Set to false only if data is at 1.25 mm isotropic resolution or very close +/- 0.1 mm.
 - `--resample_back` (optional) default is True. If True, this resamples the Swin model output from 1.25 mm isotropic to whatever the input dwi resolution was. If False, this does not resample and outputs data at 1.25 mm isotropic resolution.
