@@ -5,5 +5,31 @@ In this repository, we present using SWIN transformers to do generalized diffusi
 - different acquisition parameters (TE, TR, b-value, b-vector, etc.)
 - diverse patient populations (adult patients with mTBI, children with neurodevelopmental disorders, children/adolescents with lesions, etc.)
 
-Download model at https://drive.google.com/file/d/143yqY4VgaMhuDVspRVsP1dw6PkPpDH8z/view?usp=sharing and move to dmri-swin/models
+
+Please cite:
+Generalized Diffusion MRI Denoising and Super-Resolution using Swin Transformers
+Amir Sadikov*, Jamie Wren-Jarvis, Xinlei Pan, Lanya T. Cai, Pratik Mukherjee
+Paper: https://arxiv.org/abs/2303.05686
+
+
+## Quickstart
+1. Clone the repo
+2. Run pip install -r dmri-swin/requirements.txt or install the required packages
+3. Download the model at https://drive.google.com/file/d/143yqY4VgaMhuDVspRVsP1dw6PkPpDH8z/view?usp=sharing and move to dmri-swin/models
+4. For inference look at the swin_denoise function in inference.py or optionally use inference_cli.py which contains the cli utility
+5. Make sure that your data is sufficiently preprocessed. We used freesurfer's SynthStrip for brain masking, but in principle any good masking algorithm will do. We require fsl's Eddy to be performed on the diffusion MRI (preferentially with topup if possible) and for poor quality T1 images use freesurfer's recon-all or recon-all-clinical and take the T1.mgz or synthSR.mgz respectively. Good quality T1 images can be used as is. Next, align your diffusion MRI and T1 volumes using Boundary-based Registration with the freesurfer bbregister or the fsl epi_reg command. For the WM mask, it could be better to use the WM mask supplied by freesurfer recon-all/recon-all-clinical or use the WM regions given by freesurfer mri_synthseg.
+6. As a summary, you need diffusion MRI data (4D Volume) and its brain mask (3D Volume) as well as an aligned T1 scan (3D volume).
+7. As an example: python3 dmri-swin/inference_cli.py --dwi=/data/dwi.nii.gz --bvals=/data/dwi.bval --mask=/data/mask.nii.gz --t1=/data/t1.nii.gz --output=output.nii.gz --resample=True --resample_back=True --low_mem=True
+where:
+- `<dwi>` path to a diffusion MRI nifti file.
+- `<bvals>` path to a plain file which contains b-values.
+- `<mask>` path to a mask nifti file. Must be in the same space as the dwi.
+- `<t1>` path to a T1 MRI nifti file. Must be aligned to the dwi file.
+- `<output>` path to where you want to save the Swin denoising dwi data.
+- `--resample` (optional) default is True. Set to false only if data is at 1.25 mm isotropic resolution or very close +/- 0.1 mm.
+- `--resample_back` (optional) default is True. If True, this resamples the Swin model output from 1.25 mm isotropic to whatever the input dwi resolution was. If False, this does not resample and outputs data at 1.25 mm isotropic resolution.
+- `--low_mem` (optional) Pushes each 3D dwi volume into memory sequentially (to save gpu memory) instead of all at once. Useful for large dwi scan sizes.
+
+
+
 

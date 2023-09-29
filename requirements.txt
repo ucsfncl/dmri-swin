@@ -1,0 +1,11 @@
+dipy==1.5.0
+matplotlib==3.5.3
+monai==1.0.0
+monai-weekly==1.2.dev2305
+nibabel==4.0.2
+numpy==1.21.6
+omegaconf==2.2.3
+pandas==1.3.5
+pytorch-lightning==1.7.7
+scipy==1.7.3
+torch==1.12.1+cu113
