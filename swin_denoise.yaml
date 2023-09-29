@@ -1,0 +1,17 @@
+model:
+  target: dswin.models.denoiser.DiffusionDenoise
+  params:
+    model_config:
+      target: monai.networks.nets.SwinUNETR
+      params:
+        img_size: [128, 128, 128]
+        in_channels: 2
+        out_channels: 1
+        feature_size: 48
+        drop_rate: 0.0
+        attn_drop_rate: 0.0
+        dropout_path_rate: 0.0
+        use_checkpoint: False  # Can set to True to reduce GPU memory usage
+    lr: 1e-5
+ckpt_path: "dmri-swin/models/dmri-swin-unetr.pt"  # Path to the checkpoint file
+# ckpt_path: "dmri-swin/models/monai-swin-unetr-other-epoch=18.ckpt"  # Path to the checkpoint file
