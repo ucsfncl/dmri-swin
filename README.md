@@ -5,6 +5,7 @@ In this repository, we present using SWIN transformers to do generalized diffusi
 - different acquisition parameters (TE, TR, b-value, b-vector, etc.)
 - diverse patient populations (adult patients with mTBI, children with neurodevelopmental disorders, children/adolescents with lesions, etc.)
 
+From what we have seen the performance benefits of our model out-of-the-box over other methods will vary from dataset to dataset and we have seen improvements from finetuning even on a single scan from one patient. We have also done further analysis and have found that our model is at least as repeatable as other SOTA denoising methods.
 
 Please cite:
 Generalized Diffusion MRI Denoising and Super-Resolution using Swin Transformers
@@ -17,9 +18,9 @@ Paper: https://arxiv.org/abs/2303.05686
 ## Quickstart
 1. Clone the repo
 2. Run pip install -r dmri-swin/requirements.txt or install the required packages
-3. Download the model at https://drive.google.com/file/d/143yqY4VgaMhuDVspRVsP1dw6PkPpDH8z/view?usp=sharing and move to dmri-swin/models
-4. For inference look at the swin_denoise function in inference.py or optionally use inference_cli.py which contains the cli utility
-5. Make sure that your data is sufficiently preprocessed. We used freesurfer's SynthStrip for brain masking, but in principle any good masking algorithm will do. We require fsl's Eddy to be performed on the diffusion MRI (preferentially with topup if possible) and for poor quality T1 images use freesurfer's recon-all or recon-all-clinical and take the T1.mgz or synthSR.mgz respectively. Good quality T1 images can be used as is. Next, align your diffusion MRI and T1 volumes using Boundary-based Registration with the freesurfer bbregister or the fsl epi_reg command. For the WM mask, it could be better to use the WM mask supplied by freesurfer recon-all/recon-all-clinical or use the WM regions given by freesurfer mri_synthseg.
+3. Download the model at https://drive.google.com/file/d/143yqY4VgaMhuDVspRVsP1dw6PkPpDH8z/view?usp=sharing and move it to dmri-swin/models
+4. For inference look at the swin_denoise function in inference.py or optionally use inference_cli.py which contains a cli utility
+5. Make sure that your data is sufficiently preprocessed. We used freesurfer's SynthStrip for brain masking, but any good masking algorithm will do. We require fsl's Eddy to be performed on the diffusion MRI (preferentially with topup if possible) and for poor quality T1 images it's best to use freesurfer's recon-all or recon-all-clinical and take the T1.mgz or synthSR.mgz respectively. Good quality T1 images can be used as is. Next, we align the diffusion MRI and T1 volumes using Boundary-based Registration with the freesurfer bbregister or the fsl epi_reg command use the white matter mask supplied by freesurfer recon-all/recon-all-clinical or use the WM regions given by freesurfer mri_synthseg.
 6. As a summary, you need diffusion MRI data (4D Volume) and its brain mask (3D Volume) as well as an aligned T1 scan (3D volume).
 7. As an example: python3 dmri-swin/inference_cli.py --dwi=/data/dwi.nii.gz --bvals=/data/dwi.bval --mask=/data/mask.nii.gz --t1=/data/t1.nii.gz --output=output.nii.gz --resample=True --resample_back=True --low_mem=True
 
@@ -35,7 +36,7 @@ where:
 - `--low_mem` (optional) default is False. Pushes each 3D dwi volume into memory sequentially (to save gpu memory) instead of all at once. Useful for large dwi scan sizes.
 
 ### Example
-We use the Stanford HARDI dataset provided by dipy to illustrate the use of our out-of-the-box model in validation.py (takes 6-direction subset and find mean absolute error in white matter and gray matter as well as plot parametric maps) and validation_p2s.py (does Patch2Self cross-validation using the full acquisition). In each case, we compare our model to MPPCA and Patch2Self.
+We use the Stanford HARDI dataset provided by dipy to illustrate the use of our out-of-the-box model in validation.py (takes 6-direction subset and finds mean absolute error in white matter and gray matter as well as plots diffusion tensor parametric maps) and validation_p2s.py (does Patch2Self-style cross-validation using the full acquisition). In each case, we compare our model to MPPCA and Patch2Self.
 
 ![DTI Example](figs/stanford_dti_metrics.png)
 ![P2S DTI Example](figs/dti_cross_val.png)
