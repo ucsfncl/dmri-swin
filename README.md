@@ -7,12 +7,11 @@ In this repository, we present using SWIN transformers to do generalized diffusi
 
 The performance benefits of our model out-of-the-box over other methods will vary from dataset to dataset and we have seen improvements from finetuning even on a single scan from one patient. We have also done further analysis and have found that our model is more repeatable than other SOTA denoising methods.
 
-Please cite:
-Generalized Diffusion MRI Denoising and Super-Resolution using Swin Transformers
+See our paper:
 
-Amir Sadikov*, Jamie Wren-Jarvis, Xinlei Pan, Lanya T. Cai, Pratik Mukherjee
-
-Paper: https://arxiv.org/abs/2303.05686
+**Generalized Diffusion MRI Denoising and Super-Resolution using Swin Transformers** <br>
+*Amir Sadikov\*, Jamie Wren-Jarvis, Xinlei Pan, Lanya T. Cai, Pratik Mukherjee* <br>
+Paper: https://arxiv.org/abs/2303.05686 <br>
 
 
 ## Quickstart
