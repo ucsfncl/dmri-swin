@@ -8,7 +8,9 @@ In this repository, we present using SWIN transformers to do generalized diffusi
 
 Please cite:
 Generalized Diffusion MRI Denoising and Super-Resolution using Swin Transformers
+
 Amir Sadikov*, Jamie Wren-Jarvis, Xinlei Pan, Lanya T. Cai, Pratik Mukherjee
+
 Paper: https://arxiv.org/abs/2303.05686
 
 
@@ -20,6 +22,7 @@ Paper: https://arxiv.org/abs/2303.05686
 5. Make sure that your data is sufficiently preprocessed. We used freesurfer's SynthStrip for brain masking, but in principle any good masking algorithm will do. We require fsl's Eddy to be performed on the diffusion MRI (preferentially with topup if possible) and for poor quality T1 images use freesurfer's recon-all or recon-all-clinical and take the T1.mgz or synthSR.mgz respectively. Good quality T1 images can be used as is. Next, align your diffusion MRI and T1 volumes using Boundary-based Registration with the freesurfer bbregister or the fsl epi_reg command. For the WM mask, it could be better to use the WM mask supplied by freesurfer recon-all/recon-all-clinical or use the WM regions given by freesurfer mri_synthseg.
 6. As a summary, you need diffusion MRI data (4D Volume) and its brain mask (3D Volume) as well as an aligned T1 scan (3D volume).
 7. As an example: python3 dmri-swin/inference_cli.py --dwi=/data/dwi.nii.gz --bvals=/data/dwi.bval --mask=/data/mask.nii.gz --t1=/data/t1.nii.gz --output=output.nii.gz --resample=True --resample_back=True --low_mem=True
+
 where:
 - `<dwi>` path to a diffusion MRI nifti file.
 - `<bvals>` path to a plain file which contains b-values.
@@ -30,6 +33,9 @@ where:
 - `--resample_back` (optional) default is True. If True, this resamples the Swin model output from 1.25 mm isotropic to whatever the input dwi resolution was. If False, this does not resample and outputs data at 1.25 mm isotropic resolution.
 - `--low_mem` (optional) Pushes each 3D dwi volume into memory sequentially (to save gpu memory) instead of all at once. Useful for large dwi scan sizes.
 
+### Example
+We use the Stanford HARDI dataset provided by dipy to illustrate the use of our model in validation.py (takes 6-direction subset and find mean absolute error in white matter and gray matter as well as plot parametric maps) and validation_p2s.py (does Patch2Self cross-validation using the full acquisition). In each case, we compare our model to MPPCA and Patch2Self.
 
-
-
+![DTI Example](figs/stanford_dti_metrics.png)
+![P2S DTI Example](figs/dti_cross_val.png)
+![P2S CSD Example](figs/csd_cross_val.png)
