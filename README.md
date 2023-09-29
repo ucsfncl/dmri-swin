@@ -5,7 +5,7 @@ In this repository, we present using SWIN transformers to do generalized diffusi
 - different acquisition parameters (TE, TR, b-value, b-vector, etc.)
 - diverse patient populations (adult patients with mTBI, children with neurodevelopmental disorders, children/adolescents with lesions, etc.)
 
-From what we have seen the performance benefits of our model out-of-the-box over other methods will vary from dataset to dataset and we have seen improvements from finetuning even on a single scan from one patient. We have also done further analysis and have found that our model is at least as repeatable as other SOTA denoising methods.
+The performance benefits of our model out-of-the-box over other methods will vary from dataset to dataset and we have seen improvements from finetuning even on a single scan from one patient. We have also done further analysis and have found that our model is more repeatable than other SOTA denoising methods.
 
 Please cite:
 Generalized Diffusion MRI Denoising and Super-Resolution using Swin Transformers
