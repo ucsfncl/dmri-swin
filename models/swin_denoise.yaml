@@ -1,5 +1,5 @@
 model:
-  target: dswin.models.denoiser.DiffusionDenoise
+  target: model.DiffusionDenoise
   params:
     model_config:
       target: monai.networks.nets.SwinUNETR
