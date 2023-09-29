@@ -1,6 +1,6 @@
 # Diffusion MRI SWIN UNETR
 
-In this repository, we present using SWIN transformers to do generalized diffusion MRI denoising and super-resolution. Our model is robust to:
+In this repository, we use SWIN transformers to perform generalized diffusion MRI denoising and super-resolution. Our model is robust to:
 - wide array of scanners (ge, siemens, etc.)
 - different acquisition parameters (TE, TR, b-value, b-vector, etc.)
 - diverse patient populations (adult patients with mTBI, children with neurodevelopmental disorders, children/adolescents with lesions, etc.)
