@@ -25,12 +25,12 @@ Paper: https://arxiv.org/abs/2303.05686
 7. As an example: ```python dmri-swin/inference_cli.py --dwi=/data/dwi.nii.gz --bvals=/data/dwi.bval --mask=/data/mask.nii.gz --t1=/data/t1.nii.gz --output=output.nii.gz --resample=True --resample_back=True --low_mem=True```
 
 where:
-- `<dwi>` path to a diffusion MRI nifti file.
-- `<bvals>` path to a plain file which contains b-values.
-- `<mask>` path to a mask nifti file. Must be in the same space as the dwi.
-- `<t1>` path to a T1 MRI nifti file. Must be aligned to the dwi file.
-- `<output>` (optional) deafult is swin_denoised.nii.gz. This is the path to where you want to save the Swin denoising dwi data.
-- `<config>` (optional) default is dmri-swin/models/swin_denoise.yaml. This is the path to where the model config file is. You shouldn't need to change this.
+- `--dwi` path to a diffusion MRI nifti file.
+- `--bvals` path to a plain file which contains b-values.
+- `--mask` path to a mask nifti file. Must be in the same space as the dwi.
+- `--t1` path to a T1 MRI nifti file. Must be aligned to the dwi file.
+- `--output` (optional) deafult is swin_denoised.nii.gz. This is the path to where you want to save the Swin denoising dwi data.
+- `--config` (optional) default is dmri-swin/models/swin_denoise.yaml. This is the path to where the model config file is. You shouldn't need to change this.
 - `--resample` (optional) default is True. Set to false only if data is at 1.25 mm isotropic resolution or very close +/- 0.1 mm.
 - `--resample_back` (optional) default is True. If True, this resamples the Swin model output from 1.25 mm isotropic to whatever the input dwi resolution was. If False, this does not resample and outputs data at 1.25 mm isotropic resolution.
 - `--low_mem` (optional) default is False. Pushes each 3D dwi volume into memory sequentially (to save gpu memory) instead of all at once. Useful for large dwi scan sizes.
