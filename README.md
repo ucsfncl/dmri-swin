@@ -40,3 +40,10 @@ We use the Stanford HARDI dataset provided by dipy to illustrate the use of our 
 ![DTI Example](figs/stanford_dti_metrics.png)
 ![P2S DTI Example](figs/dti_cross_val.png)
 ![P2S CSD Example](figs/csd_cross_val.png)
+
+### Catalog
+- [x] Inference Code
+- [x] Basic Validation with Stanford HARDI
+- [ ] Training Code
+- [ ] Finetuning Code
+---
