@@ -14,4 +14,3 @@ model:
         use_checkpoint: False  # Can set to True to reduce GPU memory usage
     lr: 1e-5
 ckpt_path: "dmri-swin/models/dmri-swin-unetr.pt"  # Path to the checkpoint file
-# ckpt_path: "dmri-swin/models/monai-swin-unetr-other-epoch=18.ckpt"  # Path to the checkpoint file
