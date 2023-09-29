@@ -169,7 +169,7 @@ if __name__ == "__main__":
     image.save_nifti("stanford_p2s.nii.gz", dwi_p2s, dwi_affine)
 
     # SWIN
-    config_filepath = "dmri-swin/swin_denoise.yaml"
+    config_filepath = "dmri-swin/models/swin_denoise.yaml"
     config = OmegaConf.load(config_filepath)
 
     model = instantiate_from_config(config.model)

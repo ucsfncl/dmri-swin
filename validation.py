@@ -197,7 +197,7 @@ if __name__ == "__main__":
     print(make_dti_results(ret["gt"], ret["p2s"], gm_mask[mask]))
 
     # SWIN (tries to use GPU)
-    config_filepath = "dmri-swin/swin_denoise.yaml"
+    config_filepath = "dmri-swin/models/swin_denoise.yaml"
     config = OmegaConf.load(config_filepath)
 
     model = instantiate_from_config(config.model)

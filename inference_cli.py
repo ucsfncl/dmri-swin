@@ -14,7 +14,7 @@ if __name__ == "__main__":
     parser.add_argument('--bvals', help="Path to bvals file", required=True, type=str)
     parser.add_argument('--mask', help="Path to mask file", required=True, type=str)
     parser.add_argument('--t1', help="Path to T1 file", required=True, type=str)
-    parser.add_argument('--config', help="Path to config file", required=False, type=str, default="dmri-swin/swin_denoise.yaml")
+    parser.add_argument('--config', help="Path to config file", required=False, type=str, default="dmri-swin/models/swin_denoise.yaml")
     parser.add_argument('--output', help="Path to output file", required=False, type=str, default="swin_denoised.nii.gz")
     parser.add_argument('--resample', help="Resample to 1.25 mm", required=False, type=bool, default=True)
     parser.add_argument('--resample_back', help="Resample to dmri native resolution", required=False, type=bool, default=True)
