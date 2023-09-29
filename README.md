@@ -35,7 +35,7 @@ where:
 - `--low_mem` (optional) default is False. Pushes each 3D dwi volume into memory sequentially (to save gpu memory) instead of all at once. Useful for large dwi scan sizes.
 
 ### Example
-We use the Stanford HARDI dataset provided by dipy to illustrate the use of our model in validation.py (takes 6-direction subset and find mean absolute error in white matter and gray matter as well as plot parametric maps) and validation_p2s.py (does Patch2Self cross-validation using the full acquisition). In each case, we compare our model to MPPCA and Patch2Self.
+We use the Stanford HARDI dataset provided by dipy to illustrate the use of our out-of-the-box model in validation.py (takes 6-direction subset and find mean absolute error in white matter and gray matter as well as plot parametric maps) and validation_p2s.py (does Patch2Self cross-validation using the full acquisition). In each case, we compare our model to MPPCA and Patch2Self.
 
 ![DTI Example](figs/stanford_dti_metrics.png)
 ![P2S DTI Example](figs/dti_cross_val.png)
